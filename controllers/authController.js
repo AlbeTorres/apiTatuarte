@@ -26,7 +26,7 @@ exports.autenticarUsuario = async (req,res) =>{
         //Verificar que el password es correcto
             
             //Comparar password del req con el almacenado en db
-        const passwordCorrecto = bcryptjs.compare(password, usuario.password);
+        const passwordCorrecto =await bcryptjs.compare(password, usuario.password);
 
         if(!passwordCorrecto){
             return res.status(400).json({msg: `La contraseña es incorrecta`});
