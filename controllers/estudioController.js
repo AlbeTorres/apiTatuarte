@@ -1,7 +1,7 @@
 const Estudio = require('../models/Estudio');
 const {validationResult} = require('express-validator');
 
-
+//Crea un estudio
 exports.crearEstudio= async(req,res)=>{
 
     try {
@@ -34,6 +34,16 @@ exports.crearEstudio= async(req,res)=>{
 
 }
 
+//Obtiene todos los estudios
 exports.obtenerEstudios= async(req,res)=>{
-    
+    try {
+        const estudios= await Estudio.find();
+        res.json({estudios});
+        
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({msg:'hubo un error'});
+        
+    }
+
 }
