@@ -35,7 +35,7 @@ exports.crearUsuario= async(req,res)=>{
 
         //crear y firmar el jwt
         const payload= {
-            id:usuario.id
+            usuario:{id:usuario.id}
         };
 
         //firmar el token

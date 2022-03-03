@@ -34,7 +34,7 @@ exports.autenticarUsuario = async (req,res) =>{
 
         //Si todo es correcto crear y firmar el jwt
         const payload= {
-            id:usuario.id
+            usuario:{id:usuario.id}
         };
 
             //firmar el token

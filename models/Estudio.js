@@ -8,13 +8,6 @@ const EstudioSchema= mongoose.Schema({
     },
     email:{
         type: String,
-        required:true,
-        trim:true,
-        unique:true
-    },
-    password:{
-        type: String,
-        required:true,
         trim:true,
     },
     registro:{
@@ -23,19 +16,9 @@ const EstudioSchema= mongoose.Schema({
     },
     movil:{
         type:Number,
-        require: true,
-    },
-    provincia:{
-        type:String,
-        
-    },
-    municipio:{
-        type:String,
-
     },
     ubicacion:{
         type:String,
-
     },
     logo:{
         type:String,
