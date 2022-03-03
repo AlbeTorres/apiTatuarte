@@ -4,7 +4,7 @@ const {validationResult} = require('express-validator');
 //Crea un estudio
 exports.crearEstudio= async(req,res)=>{
 
-    try {
+    
 
     //Revisar si hay errores
     const errores = validationResult(req);
@@ -13,6 +13,7 @@ exports.crearEstudio= async(req,res)=>{
         return res.status(400).json({errores: errores.array()});
     }
 
+    try {
     //crear estudio
     const estudio = new Estudio(req.body);
 
@@ -46,4 +47,45 @@ exports.obtenerEstudios= async(req,res)=>{
         
     }
 
+}
+
+
+//actualiza un estudio
+exports.actualizarEstudio= async (req,res)=>{
+
+    //Revisar si hay errores
+    const errores = validationResult(req);
+    
+    if(!errores.isEmpty()){
+        return res.status(400).json({errores: errores.array()});
+    }
+    
+    try {
+
+        //comprobar que existe el estudio
+        let estudiofind = await Estudio.findById(req.params.id);
+
+        console.log(estudiofind)
+
+        if(!estudiofind){
+            return res.status(404).json({msg:"Estudio no found"});
+
+        }
+
+        //comprobar que el estudio pertenezca al user logueado
+        if(estudiofind.usuario != req.usuario.id){
+            return res.status(401).json({msg:'No tiene permisos para actualizar este estudio'});
+        }
+
+
+        //actualizar el estudio
+        await Estudio.updateOne({_id:req.params.id},{$set:req.body});
+
+        res.json({msg:"Estudio actualizado correctamente"})
+
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({msg:'hubo un error'});
+        
+    }
 }
