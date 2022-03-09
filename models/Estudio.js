@@ -35,7 +35,15 @@ const EstudioSchema= mongoose.Schema({
     },
     usuario:{
         type: mongoose.Schema.Types.ObjectId,
-    }
+    },
+    provincia:{
+        type:String,
+        
+    },
+    municipio:{
+        type:String,
+
+    },
 
 });
 
