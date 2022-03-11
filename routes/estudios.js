@@ -22,7 +22,7 @@ router.post('/',auth,[
 //Obtener todos los estudios
 //obtienes estudidos filtrados /estudios?provincia=provinciaBuscar
 //obtienes estudidos filtrados /estudios?municipio=municipioBuscar
-router.get('/', auth, estudioController.obtenerEstudios);
+router.get('/',estudioController.obtenerEstudios);
 
 
 //Actualizar un estudio

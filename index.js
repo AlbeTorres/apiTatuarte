@@ -17,6 +17,7 @@ const PORT = process.env.PORT || 4000;
 app.use('/api/usuarios',require('./routes/users'));
 app.use('/api/autenticar',require('./routes/auth'));
 app.use('/api/estudios',require('./routes/estudios'));
+app.use('/api/trabajos',require('./routes/trabajos'));
 
 
 //Corriendo el server
