@@ -17,7 +17,9 @@ router.post('/',auth,[
 //obtener trabajos por estudios
 router.get('/',trabajoController.obtenerTrabajos);
 
-router.patch('/',auth,[
+
+//actualizar un trabajo
+router.patch('/:id',auth,[
     check('img','Debes añadir una imagen').not().isEmpty(),
     check('estudio','El estudio es obligatorio').not().isEmpty()
 ],trabajoController.actualizarTrabajo);
