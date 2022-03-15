@@ -24,4 +24,7 @@ router.patch('/:id',auth,[
     check('estudio','El estudio es obligatorio').not().isEmpty()
 ],trabajoController.actualizarTrabajo);
 
+//eliminar un trabajo
+router.delete('/:id',auth,trabajoController.eliminarTrabajo);
+
 module.exports= router;

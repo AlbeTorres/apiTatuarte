@@ -107,7 +107,7 @@ exports.actualizarTrabajo = async(req,res)=>{
         const trabajo= await Trabajo.findById(req.params.id);
 
         if(!trabajo){
-            return res.status(404).json({msg:'Estudio no encontrado'});
+            return res.status(404).json({msg:'Trabajo no encontrado'});
         }
 
     
@@ -125,4 +125,45 @@ exports.actualizarTrabajo = async(req,res)=>{
         }
 
     
+}
+
+//elimina un trabajo
+exports.eliminarTrabajo = async(req,res) =>{
+
+    //Extraer estudio y comprobar que existe
+    const {estudio} = req.body;
+
+    try {
+    
+        const estudiob = await Estudio.findById(estudio);
+    
+        if(!estudiob){
+            return res.status(404).json({msg:'Estudio no encontrado'});
+        }
+    
+        //Comprobar que el estudio corresponde al usuario logueado
+    
+        if(estudiob.usuario != req.usuario.id){
+            return res.status(401).json({msg:'No tiene permisos para actualizar este trabajo'});
+        }
+
+        //Comprobar que existe el trabajo
+
+        const trabajo= await Trabajo.findById(req.params.id);
+
+        if(!trabajo){
+            return res.status(404).json({msg:'Trabajo no encontrado'});
+        
+        }
+
+        //eliminar el estudio
+        await Trabajo.findOneAndRemove({_id:req.params.id});
+
+        res.json({msg:"Estudio eliminado correctamente"})
+
+    } catch (error) {
+        console.log(error);
+        res.status(400).json({msg:'hubo un error'});
+        
+    }
 }
