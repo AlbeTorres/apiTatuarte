@@ -10,7 +10,6 @@ const auth = require('../middleware/auth');
 //Crea un estudio
 router.post('/',auth,[
     check('nombre','El nombre no puede estar vacio').not().isEmpty(),
-    check('email','Ingrese un email válido').isEmail(),
     check('movil',' Ingrese un número de telefono válido').isLength({min:8}),
     check('provincia',' La Provincia no puede estar vacía').not().isEmpty(),
     check('municipio',' El municipio no puede estar vacío').not().isEmpty()

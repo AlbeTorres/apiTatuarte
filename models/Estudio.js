@@ -6,10 +6,6 @@ const EstudioSchema= mongoose.Schema({
         required:true,
         trim:true
     },
-    email:{
-        type: String,
-        trim:true,
-    },
     registro:{
         type:Date,
         default:Date.now()
@@ -20,7 +16,7 @@ const EstudioSchema= mongoose.Schema({
     ubicacion:{
         type:String,
     },
-    logo:{
+    img:{
         type:String,
 
     },
